@@ -181,8 +181,11 @@ function computeRecommendation(crop, quantity, quality, markets) {
     storageTotal,
     netTotal,
     confidence,
+    marketsEvaluated: markets.length,
   };
 }
+
+const GAUGE_CIRCUMFERENCE = 2 * Math.PI * 42;
 
 function renderRecommendation(rec) {
   document.getElementById("recMarket").textContent = rec.market.name;
@@ -190,7 +193,14 @@ function renderRecommendation(rec) {
   document.getElementById("recTime").textContent = rec.bestTime;
   document.getElementById("recProfit").textContent = inr(rec.netTotal);
   document.getElementById("recConfidence").textContent = rec.confidence + "%";
-  document.getElementById("confidenceFill").style.width = rec.confidence + "%";
+  const offset = GAUGE_CIRCUMFERENCE * (1 - rec.confidence / 100);
+  const fill = document.getElementById("gaugeFill");
+  fill.style.strokeDashoffset = GAUGE_CIRCUMFERENCE;
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      fill.style.strokeDashoffset = offset;
+    });
+  });
 
   const tbody = document.querySelector("#breakdownTable tbody");
   tbody.innerHTML = `
@@ -199,6 +209,56 @@ function renderRecommendation(rec) {
     <tr><td>Less: Storage Cost (simulated)</td><td>&minus; ${inr(rec.storageTotal)}</td></tr>
     <tr class="total"><td>Expected Net Profit</td><td>${inr(rec.netTotal)}</td></tr>
   `;
+
+  renderTrace(rec);
+}
+
+// ---------- Typewriter "reasoning trace" ----------
+let traceGen = 0;
+function renderTrace(rec) {
+  const gen = ++traceGen;
+  const el = document.getElementById("traceLog");
+  el.innerHTML = "";
+
+  const lines = [
+    `Loading simulated price feed for ${state.crop}...`,
+    `Evaluating ${rec.marketsEvaluated} candidate markets within range...`,
+    `Applying Grade ${state.quality} quality multiplier to gross price...`,
+    `Highest net-score market → ${rec.market.name} (${rec.market.demand.toLowerCase()} demand, ${rec.market.km} km)`,
+    `Deducting transport + storage cost per quintal...`,
+    `Timing window selected: ${rec.bestTime}`,
+    `Confidence derived from cross-market price spread: ${rec.confidence}%`,
+    `Recommendation ready.`,
+  ];
+
+  function typeLine(i) {
+    if (gen !== traceGen || i >= lines.length) return;
+    const lineEl = document.createElement("div");
+    lineEl.className = "trace__line";
+    const prompt = document.createElement("span");
+    prompt.className = "trace__prompt";
+    prompt.textContent = ">";
+    const textSpan = document.createElement("span");
+    const cursor = document.createElement("span");
+    cursor.className = "trace__cursor";
+    lineEl.append(prompt, textSpan, cursor);
+    el.appendChild(lineEl);
+
+    const text = lines[i];
+    let ci = 0;
+    (function typeChar() {
+      if (gen !== traceGen) return;
+      if (ci < text.length) {
+        textSpan.textContent += text[ci];
+        ci++;
+        setTimeout(typeChar, 8 + Math.random() * 12);
+      } else {
+        cursor.remove();
+        setTimeout(() => typeLine(i + 1), 200);
+      }
+    })();
+  }
+  typeLine(0);
 }
 
 // ============================================================
@@ -409,9 +469,59 @@ function initReveal(root) {
   });
 }
 
+// ============================================================
+// 8. PRICE TICKER (simulated stock-ticker style strip)
+// ============================================================
+function renderTicker() {
+  const rand = seededRandom(seedFromString("ticker-demo"));
+  const crops = Object.keys(CROP_BASE_PRICE);
+  const items = crops.map((crop) => {
+    const base = CROP_BASE_PRICE[crop];
+    const delta = (rand() - 0.45) * 6;
+    const price = base * (1 + delta / 100);
+    return { crop, price, delta };
+  });
+  const rowHtml = items
+    .map(
+      (it) => `
+    <span class="ticker__item">
+      <span class="crop">${it.crop}</span>
+      <span>${inr(it.price)}/q</span>
+      <span class="${it.delta >= 0 ? "up" : "down"}">${it.delta >= 0 ? "▲" : "▼"} ${Math.abs(it.delta).toFixed(1)}%</span>
+    </span>`
+    )
+    .join("");
+  // duplicate the row so the CSS translateX(-50%) loop is seamless
+  document.getElementById("tickerTrack").innerHTML = rowHtml + rowHtml;
+}
+
+// ============================================================
+// 9. COUNT-UP STATS
+// ============================================================
+function initCountUp() {
+  document.querySelectorAll(".count-up").forEach((el) => {
+    const to = parseFloat(el.dataset.countTo);
+    const prefix = el.dataset.prefix || "";
+    const suffix = el.dataset.suffix || "";
+    const isDecimal = String(to).includes(".");
+    const duration = 1200;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = to * eased;
+      el.textContent = prefix + (isDecimal ? val.toFixed(1) : Math.round(val)) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initForm();
   initSpotlight();
+  renderTicker();
   refreshAll();
   initReveal();
+  initCountUp();
 });

@@ -4,15 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AgriConnect — SIH26132 | Market Linkages &amp; Price Discovery for Farmers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f9463"/>
+      <stop offset="100%" stop-color="#34e0a1"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- ============ PRICE TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__label">DEMO TICKER — SIMULATED PRICES</div>
+  <div class="ticker__track" id="tickerTrack"></div>
+</div>
 
 <!-- ============ NAV ============ -->
 <header class="nav" id="top">
   <div class="nav__inner container">
     <div class="nav__brand">
-      <span class="nav__logo">🌾</span>
+      <span class="nav__logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c0-8 4-14 14-16-1 9-6 14-14 16Z"/><path d="M5 21c2-4 5-7 9-9"/></svg>
+      </span>
       <div>
         <div class="nav__title">AgriConnect</div>
         <div class="nav__subtitle">SIH26132 · Prototype</div>
@@ -62,17 +82,17 @@
     <div class="hero__panel">
       <div class="stat-card spot">
         <div class="stat-card__label">Avg. Price Realisation Uplift</div>
-        <div class="stat-card__value">+18.4%</div>
+        <div class="stat-card__value"><span class="count-up" data-count-to="18.4" data-suffix="%" data-prefix="+">+0%</span></div>
         <div class="stat-card__foot">Simulated · vs. local mandi baseline</div>
       </div>
       <div class="stat-card spot">
         <div class="stat-card__label">Markets Tracked (Demo)</div>
-        <div class="stat-card__value">4</div>
+        <div class="stat-card__value"><span class="count-up" data-count-to="4">0</span></div>
         <div class="stat-card__foot">Nearby mandis in sample dataset</div>
       </div>
       <div class="stat-card spot">
         <div class="stat-card__label">Matched Buyers (Demo)</div>
-        <div class="stat-card__value">6</div>
+        <div class="stat-card__value"><span class="count-up" data-count-to="6">0</span></div>
         <div class="stat-card__foot">Institutional + retail sample</div>
       </div>
     </div>
@@ -82,19 +102,25 @@
     <h2 class="section-title section-title--center">Choose Your Role</h2>
     <div class="role-grid bento">
       <a href="#farmer" class="role-card spot role-card--wide">
-        <div class="role-card__icon">🧑‍🌾</div>
+        <div class="role-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c0-8 4-14 14-16-1 9-6 14-14 16Z"/><path d="M5 21c2-4 5-7 9-9"/></svg>
+        </div>
         <h3>Farmer / FPO</h3>
         <p>List your produce, get price recommendations and connect with verified buyers.</p>
         <span class="role-card__link">Open Farmer Dashboard →</span>
       </a>
       <a href="#buyers" class="role-card spot">
-        <div class="role-card__icon">🏬</div>
+        <div class="role-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M4 21h16"/><path d="M9 21v-6h6v6"/><path d="M9 11h.01M9 15h.01M15 11h.01M15 15h.01"/></svg>
+        </div>
         <h3>Buyer / Institution</h3>
         <p>Discover matched produce lots, view terms, and place demo offers.</p>
         <span class="role-card__link">Open Buyer View →</span>
       </a>
       <a href="#logistics" class="role-card spot">
-        <div class="role-card__icon">🏛️</div>
+        <div class="role-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M4 21V10M8 21V10M12 21V10M16 21V10M20 21V10"/><path d="M2 10l10-6 10 6"/></svg>
+        </div>
         <h3>Admin / Govt</h3>
         <p>Monitor market health, logistics flow and transaction trends (mockup).</p>
         <span class="role-card__link">Open Admin Panels →</span>
@@ -103,11 +129,41 @@
   </div>
 </section>
 
+<!-- ============ JOURNEY RAIL ============ -->
+<nav class="journey" aria-label="Product flow">
+  <div class="container journey__inner">
+    <a href="#farmer" class="journey__step">
+      <span class="journey__num">01</span>
+      <span class="journey__label">List Crop</span>
+    </a>
+    <span class="journey__arrow">→</span>
+    <a href="#market" class="journey__step">
+      <span class="journey__num">02</span>
+      <span class="journey__label">Market Intel</span>
+    </a>
+    <span class="journey__arrow">→</span>
+    <a href="#recommend" class="journey__step">
+      <span class="journey__num">03</span>
+      <span class="journey__label">AI Recommend</span>
+    </a>
+    <span class="journey__arrow">→</span>
+    <a href="#buyers" class="journey__step">
+      <span class="journey__num">04</span>
+      <span class="journey__label">Match Buyers</span>
+    </a>
+    <span class="journey__arrow">→</span>
+    <a href="#deal" class="journey__step">
+      <span class="journey__num">05</span>
+      <span class="journey__label">Confirm Deal</span>
+    </a>
+  </div>
+</nav>
+
 <!-- ============ 2. FARMER DASHBOARD ============ -->
 <section class="section" id="farmer">
   <div class="container">
     <div class="section-head">
-      <span class="section-icon">🧑‍🌾</span>
+      <span class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c0-8 4-14 14-16-1 9-6 14-14 16Z"/><path d="M5 21c2-4 5-7 9-9"/></svg></span>
       <div>
         <h2>Farmer Dashboard</h2>
         <p class="section-desc">Add your crop details to get instant market intelligence and buyer matches.</p>
@@ -182,7 +238,7 @@
 <section class="section section--alt" id="market">
   <div class="container">
     <div class="section-head">
-      <span class="section-icon">📊</span>
+      <span class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M11 20V4M18 20v-7"/><path d="M2 20h20"/></svg></span>
       <div>
         <h2>Market Intelligence</h2>
         <p class="section-desc">Live-style price view for <strong id="miCropName">Wheat</strong> — <span class="badge badge--demo badge--sm">SIMULATED DATA</span></p>
@@ -231,7 +287,7 @@
 <section class="section" id="recommend">
   <div class="container">
     <div class="section-head">
-      <span class="section-icon">🧠</span>
+      <span class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/><circle cx="12" cy="12" r="3"/></svg></span>
       <div>
         <h2>Recommendation Engine</h2>
         <p class="section-desc">AI-style recommendation for your listing, computed from simulated market signals.</p>
@@ -240,36 +296,47 @@
 
     <div class="rec-grid">
       <div class="card rec-card rec-card--primary">
-        <div class="rec-card__icon">📍</div>
+        <div class="rec-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-7.58 7-12A7 7 0 0 0 5 9c0 4.42 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
         <div class="rec-card__label">Best Market to Sell</div>
         <div class="rec-card__value" id="recMarket">Lasalgaon Mandi</div>
         <div class="rec-card__sub">18 km away · Highest simulated demand score</div>
       </div>
       <div class="card rec-card rec-card--primary">
-        <div class="rec-card__icon">🕒</div>
+        <div class="rec-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
         <div class="rec-card__label">Best Time to Sell</div>
         <div class="rec-card__value" id="recTime">Within 3–5 days</div>
         <div class="rec-card__sub">Prices trending upward (simulated)</div>
       </div>
       <div class="card rec-card rec-card--accent">
-        <div class="rec-card__icon">💰</div>
+        <div class="rec-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 14 3-3 2 2 3-4"/><path d="M14 8h2v2"/></svg></div>
         <div class="rec-card__label">Expected Net Profit</div>
         <div class="rec-card__value" id="recProfit">₹1,08,600</div>
         <div class="rec-card__sub" id="recProfitSub">After transport &amp; storage cost deduction</div>
       </div>
-      <div class="card rec-card">
-        <div class="rec-card__icon">🎯</div>
+      <div class="card rec-card rec-card--gauge">
         <div class="rec-card__label">Confidence Score</div>
-        <div class="rec-card__value" id="recConfidence">82%</div>
-        <div class="confidence-bar"><div class="confidence-bar__fill" id="confidenceFill" style="width:82%"></div></div>
+        <div class="gauge">
+          <svg viewBox="0 0 100 100" class="gauge__svg">
+            <circle cx="50" cy="50" r="42" class="gauge__track"/>
+            <circle cx="50" cy="50" r="42" class="gauge__fill" id="gaugeFill"/>
+          </svg>
+          <div class="gauge__value" id="recConfidence">82%</div>
+        </div>
       </div>
     </div>
 
-    <div class="card breakdown-card">
-      <h3 class="card__title">Profit Breakdown (Simulated)</h3>
-      <table class="table" id="breakdownTable">
-        <tbody></tbody>
-      </table>
+    <div class="grid-2">
+      <div class="card breakdown-card">
+        <h3 class="card__title">Profit Breakdown (Simulated)</h3>
+        <table class="table" id="breakdownTable">
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="card trace-card">
+        <h3 class="card__title">Engine Reasoning Trace <span class="chip">SIMULATED LOGIC</span></h3>
+        <div class="trace" id="traceLog" aria-live="polite"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -278,7 +345,7 @@
 <section class="section section--alt" id="buyers">
   <div class="container">
     <div class="section-head">
-      <span class="section-icon">🤝</span>
+      <span class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15 15 9"/><path d="M11 6l1-1a4 4 0 0 1 6 6l-1 1"/><path d="M13 18l-1 1a4 4 0 0 1-6-6l1-1"/></svg></span>
       <div>
         <h2>Buyer Matching</h2>
         <p class="section-desc">Buyers matched to your listing based on quantity, quality and location fit (simulated matching).</p>
@@ -293,7 +360,7 @@
 <section class="section" id="deal">
   <div class="container">
     <div class="section-head">
-      <span class="section-icon">📄</span>
+      <span class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><path d="m9 14 2 2 4-4"/></svg></span>
       <div>
         <h2>Deal Confirmation</h2>
         <p class="section-desc">Once an offer is accepted, a digital agreement summary is generated below (frontend-only demo).</p>
@@ -302,7 +369,7 @@
 
     <div class="card deal-card" id="dealCard">
       <div class="deal-card__empty" id="dealEmpty">
-        <span class="deal-card__empty-icon">📭</span>
+        <span class="deal-card__empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></span>
         <p>No deal confirmed yet. Accept a buyer offer above to see the agreement summary here.</p>
       </div>
       <div class="deal-card__content" id="dealContent" hidden>
@@ -311,7 +378,7 @@
             <h3>Digital Agreement Summary</h3>
             <span class="chip">DEMO — NOT LEGALLY BINDING</span>
           </div>
-          <span class="badge badge--success">✔ Confirmed</span>
+          <span class="badge badge--success"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg> Confirmed</span>
         </div>
         <div class="deal-grid" id="dealGrid"></div>
         <div class="deal-card__id">Reference ID: <span id="dealRef">—</span></div>
@@ -324,7 +391,7 @@
 <section class="section section--alt" id="logistics">
   <div class="container">
     <div class="section-head">
-      <span class="section-icon">🚚</span>
+      <span class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3z"/><path d="M14 11h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg></span>
       <div>
         <h2>Logistics, Payment &amp; Transaction History</h2>
         <p class="section-desc">Stretch-goal features shown as static UI mockups — not functional in this prototype.</p>
@@ -338,7 +405,7 @@
 
     <div class="grid-3 mb">
       <div class="card mock-card">
-        <h3 class="card__title">🚚 Logistics Tracker <span class="chip chip--muted">MOCKUP</span></h3>
+        <h3 class="card__title"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3z"/><path d="M14 11h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg> Logistics Tracker <span class="chip chip--muted">MOCKUP</span></h3>
         <div class="track">
           <div class="track__step track__step--done"><span></span>Pickup Scheduled</div>
           <div class="track__step track__step--done"><span></span>In Transit</div>
@@ -349,7 +416,7 @@
       </div>
 
       <div class="card mock-card">
-        <h3 class="card__title">💳 Payment Status <span class="chip chip--muted">MOCKUP</span></h3>
+        <h3 class="card__title"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/><path d="M6 15h4"/></svg> Payment Status <span class="chip chip--muted">MOCKUP</span></h3>
         <ul class="kv-list">
           <li><span>Escrow Amount</span><strong>₹1,17,000</strong></li>
           <li><span>Status</span><strong class="text-amber">Pending Release</strong></li>
@@ -359,7 +426,7 @@
       </div>
 
       <div class="card mock-card">
-        <h3 class="card__title">📜 Transaction History <span class="chip chip--muted">MOCKUP</span></h3>
+        <h3 class="card__title"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 8v4l3 2"/></svg> Transaction History <span class="chip chip--muted">MOCKUP</span></h3>
         <ul class="history-list">
           <li><span>Onion · 40q</span><strong>₹92,000</strong><em>Completed</em></li>
           <li><span>Soybean · 30q</span><strong>₹1,35,000</strong><em>Completed</em></li>
@@ -374,7 +441,7 @@
 <section class="section" id="about">
   <div class="container">
     <div class="section-head">
-      <span class="section-icon">ℹ️</span>
+      <span class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.5" r="0.9" fill="currentColor" stroke="none"/></svg></span>
       <div>
         <h2>About &amp; How It Works</h2>
         <p class="section-desc">What problem AgriConnect solves, and how the recommendation logic works in this prototype.</p>
