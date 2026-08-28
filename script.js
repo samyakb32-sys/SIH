@@ -368,7 +368,50 @@ function initForm() {
   document.getElementById("buyerGrid").addEventListener("click", handleBuyerAction);
 }
 
+// ============================================================
+// 7. VISUAL POLISH — spotlight hover + scroll-reveal (vanilla JS)
+// ============================================================
+function initSpotlight() {
+  document.addEventListener("pointermove", (e) => {
+    const el = e.target.closest(".spot, .card, .buyer-card, .mock-card");
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--x", `${e.clientX - rect.left}px`);
+    el.style.setProperty("--y", `${e.clientY - rect.top}px`);
+  });
+}
+
+let revealObserver;
+function initReveal(root) {
+  root = root || document;
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+  }
+  const targets = root.querySelectorAll(
+    ".section-head, .card, .role-card, .buyer-card, .mock-card, .hero__copy, .hero__panel, .stat-card"
+  );
+  targets.forEach((el) => {
+    el.classList.add("reveal");
+    if (!el.dataset.revealBound) {
+      el.dataset.revealBound = "1";
+      revealObserver.observe(el);
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initForm();
+  initSpotlight();
   refreshAll();
+  initReveal();
 });

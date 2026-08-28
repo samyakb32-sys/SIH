@@ -34,10 +34,17 @@
 
 <!-- ============ 1. HERO ============ -->
 <section class="hero" id="hero">
+  <div class="hero__mesh" aria-hidden="true">
+    <span class="blob blob--1"></span>
+    <span class="blob blob--2"></span>
+    <span class="blob blob--3"></span>
+    <span class="hero__grain"></span>
+  </div>
+
   <div class="container hero__grid">
     <div class="hero__copy">
       <span class="tag">Smart India Hackathon · SIH26132</span>
-      <h1>Strengthening Market Linkages &amp; Price Discovery for Farmers</h1>
+      <h1>Strengthening Market Linkages &amp; <span class="text-gradient">Price Discovery</span> for Farmers</h1>
       <p class="hero__lead">
         AgriConnect helps farmers discover the right market, the right time to sell,
         and the right buyer — backed by transparent, data-driven recommendations.
@@ -53,17 +60,17 @@
       </div>
     </div>
     <div class="hero__panel">
-      <div class="stat-card">
+      <div class="stat-card spot">
         <div class="stat-card__label">Avg. Price Realisation Uplift</div>
         <div class="stat-card__value">+18.4%</div>
         <div class="stat-card__foot">Simulated · vs. local mandi baseline</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card spot">
         <div class="stat-card__label">Markets Tracked (Demo)</div>
         <div class="stat-card__value">4</div>
         <div class="stat-card__foot">Nearby mandis in sample dataset</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card spot">
         <div class="stat-card__label">Matched Buyers (Demo)</div>
         <div class="stat-card__value">6</div>
         <div class="stat-card__foot">Institutional + retail sample</div>
@@ -73,20 +80,20 @@
 
   <div class="container">
     <h2 class="section-title section-title--center">Choose Your Role</h2>
-    <div class="role-grid">
-      <a href="#farmer" class="role-card">
+    <div class="role-grid bento">
+      <a href="#farmer" class="role-card spot role-card--wide">
         <div class="role-card__icon">🧑‍🌾</div>
         <h3>Farmer / FPO</h3>
         <p>List your produce, get price recommendations and connect with verified buyers.</p>
         <span class="role-card__link">Open Farmer Dashboard →</span>
       </a>
-      <a href="#buyers" class="role-card">
+      <a href="#buyers" class="role-card spot">
         <div class="role-card__icon">🏬</div>
         <h3>Buyer / Institution</h3>
         <p>Discover matched produce lots, view terms, and place demo offers.</p>
         <span class="role-card__link">Open Buyer View →</span>
       </a>
-      <a href="#logistics" class="role-card">
+      <a href="#logistics" class="role-card spot">
         <div class="role-card__icon">🏛️</div>
         <h3>Admin / Govt</h3>
         <p>Monitor market health, logistics flow and transaction trends (mockup).</p>
