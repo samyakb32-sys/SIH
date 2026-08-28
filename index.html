@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriConnect — SIH26132 | Market Linkages &amp; Price Discovery for Farmers</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="top">
+  <div class="nav__inner container">
+    <div class="nav__brand">
+      <span class="nav__logo">🌾</span>
+      <div>
+        <div class="nav__title">AgriConnect</div>
+        <div class="nav__subtitle">SIH26132 · Prototype</div>
+      </div>
+    </div>
+    <nav class="nav__links">
+      <a href="#hero">Home</a>
+      <a href="#farmer">Farmer</a>
+      <a href="#market">Market Intel</a>
+      <a href="#recommend">Recommend</a>
+      <a href="#buyers">Buyers</a>
+      <a href="#about">How it Works</a>
+    </nav>
+    <span class="badge badge--demo">DEMO BUILD</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 1. HERO ============ -->
+<section class="hero" id="hero">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <span class="tag">Smart India Hackathon · SIH26132</span>
+      <h1>Strengthening Market Linkages &amp; Price Discovery for Farmers</h1>
+      <p class="hero__lead">
+        AgriConnect helps farmers discover the right market, the right time to sell,
+        and the right buyer — backed by transparent, data-driven recommendations.
+        This is a clickable prototype with simulated data for evaluation purposes.
+      </p>
+      <div class="hero__cta">
+        <a href="#farmer" class="btn btn--primary">Enter as Farmer / FPO</a>
+        <a href="#buyers" class="btn btn--ghost">Enter as Buyer</a>
+      </div>
+      <div class="hero__notice">
+        <span class="dot dot--amber"></span>
+        All prices, buyers and transactions on this site are <strong>simulated demo data</strong>, not live market feeds.
+      </div>
+    </div>
+    <div class="hero__panel">
+      <div class="stat-card">
+        <div class="stat-card__label">Avg. Price Realisation Uplift</div>
+        <div class="stat-card__value">+18.4%</div>
+        <div class="stat-card__foot">Simulated · vs. local mandi baseline</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__label">Markets Tracked (Demo)</div>
+        <div class="stat-card__value">4</div>
+        <div class="stat-card__foot">Nearby mandis in sample dataset</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__label">Matched Buyers (Demo)</div>
+        <div class="stat-card__value">6</div>
+        <div class="stat-card__foot">Institutional + retail sample</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 class="section-title section-title--center">Choose Your Role</h2>
+    <div class="role-grid">
+      <a href="#farmer" class="role-card">
+        <div class="role-card__icon">🧑‍🌾</div>
+        <h3>Farmer / FPO</h3>
+        <p>List your produce, get price recommendations and connect with verified buyers.</p>
+        <span class="role-card__link">Open Farmer Dashboard →</span>
+      </a>
+      <a href="#buyers" class="role-card">
+        <div class="role-card__icon">🏬</div>
+        <h3>Buyer / Institution</h3>
+        <p>Discover matched produce lots, view terms, and place demo offers.</p>
+        <span class="role-card__link">Open Buyer View →</span>
+      </a>
+      <a href="#logistics" class="role-card">
+        <div class="role-card__icon">🏛️</div>
+        <h3>Admin / Govt</h3>
+        <p>Monitor market health, logistics flow and transaction trends (mockup).</p>
+        <span class="role-card__link">Open Admin Panels →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. FARMER DASHBOARD ============ -->
+<section class="section" id="farmer">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-icon">🧑‍🌾</span>
+      <div>
+        <h2>Farmer Dashboard</h2>
+        <p class="section-desc">Add your crop details to get instant market intelligence and buyer matches.</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <form class="card form-card" id="cropForm">
+        <h3 class="card__title">Add Crop Listing</h3>
+
+        <div class="form-row">
+          <label for="cropName">Crop</label>
+          <select id="cropName" required>
+            <option value="">Select crop</option>
+            <option value="Tomato">Tomato</option>
+            <option value="Onion">Onion</option>
+            <option value="Wheat" selected>Wheat</option>
+            <option value="Potato">Potato</option>
+            <option value="Soybean">Soybean</option>
+          </select>
+        </div>
+
+        <div class="form-row form-row--split">
+          <div>
+            <label for="quantity">Quantity (Quintals)</label>
+            <input type="number" id="quantity" min="1" value="50" required>
+          </div>
+          <div>
+            <label for="quality">Quality Grade</label>
+            <select id="quality" required>
+              <option value="A" selected>Grade A (Premium)</option>
+              <option value="B">Grade B (Standard)</option>
+              <option value="C">Grade C (Fair)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row form-row--split">
+          <div>
+            <label for="harvestDate">Harvest Date</label>
+            <input type="date" id="harvestDate" value="2026-08-20">
+          </div>
+          <div>
+            <label for="location">Farm Location</label>
+            <input type="text" id="location" value="Nashik, Maharashtra" placeholder="Village / District, State">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--block">Get Market Recommendation</button>
+        <p class="form-hint">Submitting refreshes the Market Intelligence, Recommendation and Buyer sections below with data for this crop (simulated).</p>
+      </form>
+
+      <div class="card summary-card">
+        <h3 class="card__title">Current Listing</h3>
+        <ul class="kv-list" id="listingSummary">
+          <li><span>Crop</span><strong id="sumCrop">Wheat</strong></li>
+          <li><span>Quantity</span><strong id="sumQty">50 Quintals</strong></li>
+          <li><span>Quality</span><strong id="sumQuality">Grade A (Premium)</strong></li>
+          <li><span>Harvest Date</span><strong id="sumDate">20 Aug 2026</strong></li>
+          <li><span>Location</span><strong id="sumLocation">Nashik, Maharashtra</strong></li>
+        </ul>
+        <div class="callout callout--amber">
+          <span class="dot dot--amber"></span>
+          Demo mode: no data is stored or transmitted. Values reset on page reload.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. MARKET INTELLIGENCE ============ -->
+<section class="section section--alt" id="market">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-icon">📊</span>
+      <div>
+        <h2>Market Intelligence</h2>
+        <p class="section-desc">Live-style price view for <strong id="miCropName">Wheat</strong> — <span class="badge badge--demo badge--sm">SIMULATED DATA</span></p>
+      </div>
+    </div>
+
+    <div class="grid-3 mb">
+      <div class="card metric-card">
+        <div class="metric-card__label">Current Price (Nearest Mandi)</div>
+        <div class="metric-card__value" id="currentPrice">₹2,340<span>/quintal</span></div>
+        <div class="metric-card__delta metric-card__delta--up">▲ 4.2% vs last week (demo)</div>
+      </div>
+      <div class="card metric-card">
+        <div class="metric-card__label">7-Day Simulated Average</div>
+        <div class="metric-card__value" id="avgPrice">₹2,265<span>/quintal</span></div>
+        <div class="metric-card__delta">Across sampled markets</div>
+      </div>
+      <div class="card metric-card">
+        <div class="metric-card__label">Volatility Index (Demo)</div>
+        <div class="metric-card__value" id="volIndex">Moderate</div>
+        <div class="metric-card__delta">Based on simulated variance</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="card__title">Price Trend — Last 14 Days <span class="chip">DEMO CHART</span></h3>
+        <svg id="priceChart" viewBox="0 0 560 240" class="chart" role="img" aria-label="Simulated 14 day price trend chart"></svg>
+        <p class="chart-caption">Simulated daily closing price (₹/quintal). Randomised for demo purposes; not sourced from a live feed.</p>
+      </div>
+
+      <div class="card">
+        <h3 class="card__title">Nearby Market Comparison <span class="chip">DEMO DATA</span></h3>
+        <table class="table" id="marketTable">
+          <thead>
+            <tr><th>Market</th><th>Distance</th><th>Price/Quintal</th><th>Demand</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. RECOMMENDATION ENGINE ============ -->
+<section class="section" id="recommend">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-icon">🧠</span>
+      <div>
+        <h2>Recommendation Engine</h2>
+        <p class="section-desc">AI-style recommendation for your listing, computed from simulated market signals.</p>
+      </div>
+    </div>
+
+    <div class="rec-grid">
+      <div class="card rec-card rec-card--primary">
+        <div class="rec-card__icon">📍</div>
+        <div class="rec-card__label">Best Market to Sell</div>
+        <div class="rec-card__value" id="recMarket">Lasalgaon Mandi</div>
+        <div class="rec-card__sub">18 km away · Highest simulated demand score</div>
+      </div>
+      <div class="card rec-card rec-card--primary">
+        <div class="rec-card__icon">🕒</div>
+        <div class="rec-card__label">Best Time to Sell</div>
+        <div class="rec-card__value" id="recTime">Within 3–5 days</div>
+        <div class="rec-card__sub">Prices trending upward (simulated)</div>
+      </div>
+      <div class="card rec-card rec-card--accent">
+        <div class="rec-card__icon">💰</div>
+        <div class="rec-card__label">Expected Net Profit</div>
+        <div class="rec-card__value" id="recProfit">₹1,08,600</div>
+        <div class="rec-card__sub" id="recProfitSub">After transport &amp; storage cost deduction</div>
+      </div>
+      <div class="card rec-card">
+        <div class="rec-card__icon">🎯</div>
+        <div class="rec-card__label">Confidence Score</div>
+        <div class="rec-card__value" id="recConfidence">82%</div>
+        <div class="confidence-bar"><div class="confidence-bar__fill" id="confidenceFill" style="width:82%"></div></div>
+      </div>
+    </div>
+
+    <div class="card breakdown-card">
+      <h3 class="card__title">Profit Breakdown (Simulated)</h3>
+      <table class="table" id="breakdownTable">
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. BUYER MATCHING ============ -->
+<section class="section section--alt" id="buyers">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-icon">🤝</span>
+      <div>
+        <h2>Buyer Matching</h2>
+        <p class="section-desc">Buyers matched to your listing based on quantity, quality and location fit (simulated matching).</p>
+      </div>
+    </div>
+
+    <div class="buyer-grid" id="buyerGrid"></div>
+  </div>
+</section>
+
+<!-- ============ 6. DEAL CONFIRMATION ============ -->
+<section class="section" id="deal">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-icon">📄</span>
+      <div>
+        <h2>Deal Confirmation</h2>
+        <p class="section-desc">Once an offer is accepted, a digital agreement summary is generated below (frontend-only demo).</p>
+      </div>
+    </div>
+
+    <div class="card deal-card" id="dealCard">
+      <div class="deal-card__empty" id="dealEmpty">
+        <span class="deal-card__empty-icon">📭</span>
+        <p>No deal confirmed yet. Accept a buyer offer above to see the agreement summary here.</p>
+      </div>
+      <div class="deal-card__content" id="dealContent" hidden>
+        <div class="deal-card__header">
+          <div>
+            <h3>Digital Agreement Summary</h3>
+            <span class="chip">DEMO — NOT LEGALLY BINDING</span>
+          </div>
+          <span class="badge badge--success">✔ Confirmed</span>
+        </div>
+        <div class="deal-grid" id="dealGrid"></div>
+        <div class="deal-card__id">Reference ID: <span id="dealRef">—</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. LOGISTICS / PAYMENT / HISTORY (mockups) ============ -->
+<section class="section section--alt" id="logistics">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-icon">🚚</span>
+      <div>
+        <h2>Logistics, Payment &amp; Transaction History</h2>
+        <p class="section-desc">Stretch-goal features shown as static UI mockups — not functional in this prototype.</p>
+      </div>
+    </div>
+
+    <div class="mockup-banner">
+      <span class="dot dot--amber"></span>
+      Everything in this section is a non-interactive visual mockup illustrating planned functionality.
+    </div>
+
+    <div class="grid-3 mb">
+      <div class="card mock-card">
+        <h3 class="card__title">🚚 Logistics Tracker <span class="chip chip--muted">MOCKUP</span></h3>
+        <div class="track">
+          <div class="track__step track__step--done"><span></span>Pickup Scheduled</div>
+          <div class="track__step track__step--done"><span></span>In Transit</div>
+          <div class="track__step track__step--active"><span></span>Arriving at Mandi</div>
+          <div class="track__step"><span></span>Delivered</div>
+        </div>
+        <p class="mock-note">Vehicle: Mini Truck · ETA: 6 hrs (illustrative)</p>
+      </div>
+
+      <div class="card mock-card">
+        <h3 class="card__title">💳 Payment Status <span class="chip chip--muted">MOCKUP</span></h3>
+        <ul class="kv-list">
+          <li><span>Escrow Amount</span><strong>₹1,17,000</strong></li>
+          <li><span>Status</span><strong class="text-amber">Pending Release</strong></li>
+          <li><span>Mode</span><strong>UPI / Bank Transfer</strong></li>
+          <li><span>Est. Settlement</span><strong>2 business days</strong></li>
+        </ul>
+      </div>
+
+      <div class="card mock-card">
+        <h3 class="card__title">📜 Transaction History <span class="chip chip--muted">MOCKUP</span></h3>
+        <ul class="history-list">
+          <li><span>Onion · 40q</span><strong>₹92,000</strong><em>Completed</em></li>
+          <li><span>Soybean · 30q</span><strong>₹1,35,000</strong><em>Completed</em></li>
+          <li><span>Wheat · 25q</span><strong>₹58,750</strong><em>Completed</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. ABOUT / HOW IT WORKS ============ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-icon">ℹ️</span>
+      <div>
+        <h2>About &amp; How It Works</h2>
+        <p class="section-desc">What problem AgriConnect solves, and how the recommendation logic works in this prototype.</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="card__title">The Problem</h3>
+        <p>Farmers often lack real-time visibility into market prices and buyer demand, leading to distress selling
+          through middlemen at low prices. AgriConnect aims to close this information gap with transparent price
+          discovery and direct market linkages.</p>
+      </div>
+      <div class="card">
+        <h3 class="card__title">How the Recommendation Logic Works (Demo Model)</h3>
+        <ol class="steps">
+          <li><strong>Signal Collection:</strong> Crop, quantity, quality and location inputs are combined with simulated price feeds from nearby markets.</li>
+          <li><strong>Scoring:</strong> Each candidate market is scored on price, distance-based transport cost, and simulated demand strength.</li>
+          <li><strong>Net Profit Estimation:</strong> Gross value minus estimated transport and storage cost gives expected net profit per market.</li>
+          <li><strong>Best Choice + Confidence:</strong> The highest-scoring market/time window is surfaced with a confidence percentage reflecting simulated data consistency.</li>
+          <li><strong>Buyer Matching:</strong> Buyers are ranked by fit to quantity, quality grade and proximity.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="callout callout--info">
+      <span class="dot dot--slate"></span>
+      In a production system, this logic would be trained on real mandi price feeds (e.g. Agmarknet), weather data,
+      and historical transaction data. In this prototype, all figures are deterministic simulations for demonstration.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div>
+      <strong>AgriConnect</strong> — SIH26132 Prototype · Smart India Hackathon
+    </div>
+    <div class="footer__note">Built with static HTML/CSS/JS. All data simulated for demonstration only.</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
