@@ -6,7 +6,7 @@
 <title>AgriConnect — SIH26132 | Market Linkages &amp; Price Discovery for Farmers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Space+Grotesk:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,10 +20,66 @@
   </defs>
 </svg>
 
+<!-- ============ CINEMATIC SCROLL INTRO ============ -->
+<section class="cinema-scroll" id="cinema" aria-label="AgriConnect cinematic introduction">
+  <div class="cinema-stage">
+    <div class="cinema-world">
+      <div class="cine-sky"></div>
+      <div class="cine-sun"></div>
+      <svg class="cine-hills cine-hills--far" viewBox="0 0 1600 300" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,180 C220,90 380,230 600,150 C820,70 980,200 1200,130 C1360,85 1480,150 1600,110 L1600,300 L0,300 Z" fill="#0e4f37"/>
+      </svg>
+      <svg class="cine-hills cine-hills--mid" viewBox="0 0 1600 300" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,220 C200,150 360,260 560,190 C780,115 960,240 1180,170 C1340,120 1480,190 1600,160 L1600,300 L0,300 Z" fill="#12603f"/>
+      </svg>
+      <div class="cine-field" aria-hidden="true"></div>
+      <div class="cine-figure" aria-hidden="true">
+        <svg viewBox="0 0 64 84" fill="none" stroke="#fdf1e1" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="32" cy="12" r="7"/>
+          <path d="M32 19v26"/>
+          <path d="M32 27 18 20"/>
+          <path d="M18 20a9 9 0 0 1 9-9"/>
+          <path d="M32 27 46 33"/>
+          <path d="M32 45 22 78"/>
+          <path d="M32 45 44 78"/>
+          <ellipse cx="46" cy="40" rx="10" ry="8"/>
+        </svg>
+      </div>
+      <h1 class="cine-title">AgriConnect</h1>
+      <div class="cine-intro">
+        <p>A transparent line from the field to the buyer — the right market, the right time, the right price.</p>
+        <div class="cine-tags" aria-label="AgriConnect highlights">
+          <span>Fair Price Discovery</span>
+          <span>Verified Buyers</span>
+          <span>Real-Time Mandi Data</span>
+        </div>
+      </div>
+      <div class="cine-shade"></div>
+      <div class="cine-panel cine-panel--one" aria-label="The problem">
+        <h2>Every harvest deserves a fair price.</h2>
+        <p>Farmers often sell blind — one mandi, one buyer, one guess — losing value they never knew was on the table.</p>
+        <dl class="cine-facts">
+          <div><dt>15&ndash;30%</dt><dd>Income lost to price &amp; information gaps</dd></div>
+          <div><dt>4</dt><dd>Nearby markets compared per listing</dd></div>
+        </dl>
+      </div>
+      <div class="cine-panel cine-panel--two" aria-label="The solution">
+        <h2>Buyers meet farmers, transparently.</h2>
+        <p>List your crop once — AgriConnect compares markets, recommends the best move, and matches you with verified buyers.</p>
+        <a href="#farmer" class="cine-cta"><span aria-hidden="true">↓</span> Start Your Listing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PRICE TICKER ============ -->
-<div class="ticker" aria-hidden="true">
+<div class="ticker">
   <div class="ticker__label">DEMO TICKER — SIMULATED PRICES</div>
-  <div class="ticker__track" id="tickerTrack"></div>
+  <div class="ticker__track" id="tickerTrack" aria-hidden="true"></div>
+  <div class="ticker__right">
+    <span class="ticker__pill">SIH26132</span>
+    <span class="ticker__helpline">1800-425-AGRI · Toll-Free Farmer Helpline</span>
+  </div>
 </div>
 
 <!-- ============ NAV ============ -->
@@ -34,8 +90,8 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c0-8 4-14 14-16-1 9-6 14-14 16Z"/><path d="M5 21c2-4 5-7 9-9"/></svg>
       </span>
       <div>
-        <div class="nav__title">AgriConnect</div>
-        <div class="nav__subtitle">SIH26132 · Prototype</div>
+        <div class="nav__title">AgriConnect <span class="badge badge--sm badge--success">AI 2.4</span></div>
+        <div class="nav__subtitle">Sell Smarter. Earn Better.</div>
       </div>
     </div>
     <nav class="nav__links">
@@ -46,7 +102,27 @@
       <a href="#buyers">Buyers</a>
       <a href="#about">How it Works</a>
     </nav>
-    <span class="badge badge--demo">DEMO BUILD</span>
+    <div class="nav__meta">
+      <button type="button" class="district-select" title="Demo location selector (static)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>District: <strong>Nashik, Maharashtra</strong></span>
+        <span aria-hidden="true">⌄</span>
+      </button>
+      <button type="button" class="btn-chip btn-chip--amber" title="Demo UI — not wired up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z"/><path d="M19 11a7 7 0 0 1-14 0"/><path d="M12 18v3"/></svg>
+        Voice Assistant
+      </button>
+      <button type="button" class="btn-chip btn-chip--green" title="Demo UI — not wired up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/><circle cx="12" cy="12" r="3"/></svg>
+        AgriConnect AI Advisor
+      </button>
+      <button type="button" class="lang-select" title="Demo UI — not wired up">EN <span aria-hidden="true">⌄</span></button>
+      <button type="button" class="notif-btn" aria-label="Notifications (demo)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z"/><path d="M9.5 21a2.5 2.5 0 0 0 5 0"/></svg>
+        <span class="notif-badge">2</span>
+      </button>
+      <span class="badge badge--demo">DEMO BUILD</span>
+    </div>
   </div>
 </header>
 
@@ -125,6 +201,119 @@
         <p>Monitor market health, logistics flow and transaction trends (mockup).</p>
         <span class="role-card__link">Open Admin Panels →</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CORE PROBLEM ============ -->
+<section class="section problem" id="problem">
+  <div class="container">
+    <div class="eyebrow-wrap"><span class="eyebrow">The Core Problem</span></div>
+    <h2 class="section-title section-title--center">The Real Challenge Indian Farmers Face</h2>
+    <p class="section-sub">Farmers often lose 15% to 30% of their potential income &mdash; not because of poor yield, but due to information asymmetry at the point of sale.</p>
+    <div class="problem-grid">
+      <div class="card problem-card spot">
+        <div class="problem-card__icon problem-card__icon--red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
+        <h3>Opaque Mandi Prices</h3>
+        <p>Prices vary wildly between nearby mandis without clear net-margin visibility.</p>
+      </div>
+      <div class="card problem-card spot">
+        <div class="problem-card__icon problem-card__icon--amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+        <h3>Zero Price Visibility</h3>
+        <p>Farmers are forced to sell immediately without knowing if prices will surge in 3&ndash;5 days.</p>
+      </div>
+      <div class="card problem-card spot">
+        <div class="problem-card__icon problem-card__icon--slate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg></div>
+        <h3>Hidden Transport &amp; Storage Costs</h3>
+        <p>A higher gross offer 100&nbsp;km away often results in a lower net pocket realization.</p>
+      </div>
+      <div class="card problem-card spot">
+        <div class="problem-card__icon problem-card__icon--green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+        <h3>Buyer Reliability &amp; Payment Delays</h3>
+        <p>Fear of delayed payment or unfair deductions at the buyer's gate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP-BY-STEP WORKFLOW ============ -->
+<section class="section workflow" id="workflow">
+  <div class="container">
+    <div class="eyebrow-wrap"><span class="eyebrow eyebrow--dark">Step-by-Step Workflow</span></div>
+    <h2 class="section-title section-title--center section-title--light">The Complete AgriConnect Decision Flow</h2>
+    <p class="section-sub section-sub--light">From crop listing at the farmgate to bank-settled payment.</p>
+    <div class="workflow-grid">
+      <a href="#farmer" class="workflow-card">
+        <div class="workflow-card__top"><span class="workflow-card__num">01</span><span class="workflow-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5Z"/><path d="M3.3 7 12 12l8.7-5"/><path d="M12 22V12"/></svg></span></div>
+        <h3>Add Your Produce</h3>
+        <p>Enter your crop, estimated quantity and quality grade.</p>
+      </a>
+      <a href="#market" class="workflow-card">
+        <div class="workflow-card__top"><span class="workflow-card__num">02</span><span class="workflow-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M11 20V4M18 20v-7"/><path d="M2 20h20"/></svg></span></div>
+        <h3>Discover Opportunities</h3>
+        <p>Compare nearby mandis and institutional buyers in real-time (simulated).</p>
+      </a>
+      <a href="#recommend" class="workflow-card">
+        <div class="workflow-card__top"><span class="workflow-card__num">03</span><span class="workflow-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/><circle cx="12" cy="12" r="3"/></svg></span></div>
+        <h3>Get AI Sell Recommendation</h3>
+        <p>Understand whether to sell now or wait 3&ndash;5 days, with explainable drivers.</p>
+      </a>
+      <a href="#recommend" class="workflow-card">
+        <div class="workflow-card__top"><span class="workflow-card__num">04</span><span class="workflow-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span></div>
+        <h3>Compare Net Realization</h3>
+        <p>Calculate true take-home earnings after deducting transport, labour and storage.</p>
+      </a>
+      <a href="#buyers" class="workflow-card">
+        <div class="workflow-card__top"><span class="workflow-card__num">05</span><span class="workflow-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span></div>
+        <h3>Receive &amp; Accept Offers</h3>
+        <p>Create digital lots and negotiate transparently with matched buyers.</p>
+      </a>
+      <a href="#logistics" class="workflow-card">
+        <div class="workflow-card__top"><span class="workflow-card__num">06</span><span class="workflow-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span></div>
+        <h3>Track Pickup &amp; Escrow Payment</h3>
+        <p>Schedule verified transport and receive a secured, direct bank transfer (mockup).</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLATFORM CAPABILITIES ============ -->
+<section class="section capabilities" id="capabilities">
+  <div class="container">
+    <div class="eyebrow-wrap"><span class="eyebrow">Platform Capabilities</span></div>
+    <h2 class="section-title section-title--center">Engineered for Maximum Net Realization</h2>
+    <p class="section-sub">Not just a price ticker &mdash; a full-cycle decision and transaction platform (simulated).</p>
+    <div class="capabilities-grid">
+      <div class="card cap-card spot">
+        <div class="cap-card__icon cap-card__icon--amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
+        <h3>AI Price Prediction</h3>
+        <p>Multi-day probabilistic forecasting leveraging simulated regional arrivals data.</p>
+      </div>
+      <div class="card cap-card spot">
+        <div class="cap-card__icon cap-card__icon--green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Smart Buyer Matching</h3>
+        <p>Rank verified institutional buyers by take-home margin and trust ratings.</p>
+      </div>
+      <div class="card cap-card spot">
+        <div class="cap-card__icon cap-card__icon--blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+        <h3>Net Realization Engine</h3>
+        <p>Deducts freight, storage cost and mandi cess to compute exact in-pocket returns.</p>
+      </div>
+      <div class="card cap-card spot">
+        <div class="cap-card__icon cap-card__icon--green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Verified Buyers &amp; Escrow</h3>
+        <p>Licensed buyers with bank-guaranteed, same-day simulated settlements.</p>
+      </div>
+      <div class="card cap-card spot">
+        <div class="cap-card__icon cap-card__icon--purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 4.5-9 4.5-9-4.5L12 3Z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/></svg></div>
+        <h3>FPO Aggregation Hub</h3>
+        <p>Pool village produce into bulk lots to earn premium prices and save on freight.</p>
+      </div>
+      <div class="card cap-card spot">
+        <div class="cap-card__icon cap-card__icon--teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3z"/><path d="M14 11h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg></div>
+        <h3>Transport &amp; Storage</h3>
+        <p>Discover nearby accredited warehouses and book local freight mini-trucks.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -472,6 +661,43 @@
       In a production system, this logic would be trained on real mandi price feeds (e.g. Agmarknet), weather data,
       and historical transaction data. In this prototype, all figures are deterministic simulations for demonstration.
     </div>
+  </div>
+</section>
+
+<!-- ============ IMPACT STATS ============ -->
+<section class="section impact-wrap" id="impact">
+  <div class="container">
+    <div class="impact-banner">
+      <h2>Demonstrated Farmer Impact</h2>
+      <p>Illustrative pilot benchmarks across sample agricultural clusters &mdash; simulated for this prototype.</p>
+      <div class="impact-grid">
+        <div class="impact-stat">
+          <div class="impact-stat__value"><span class="count-up" data-count-to="12400" data-suffix="+">0</span></div>
+          <div class="impact-stat__label">Farmers Connected</div>
+        </div>
+        <div class="impact-stat">
+          <div class="impact-stat__value impact-stat__value--amber"><span class="count-up" data-count-to="380" data-suffix="+">0</span></div>
+          <div class="impact-stat__label">Verified Buyers</div>
+        </div>
+        <div class="impact-stat">
+          <div class="impact-stat__value"><span class="count-up" data-count-to="14500" data-prefix="+&#8377;">0</span></div>
+          <div class="impact-stat__label">Avg. Additional Gain per 100&nbsp;Q</div>
+        </div>
+        <div class="impact-stat">
+          <div class="impact-stat__value impact-stat__value--white"><span class="count-up" data-count-to="99.4" data-suffix="%">0</span></div>
+          <div class="impact-stat__label">Escrow Settlement Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="section final-cta">
+  <div class="container final-cta__inner">
+    <h2>Ready to experience AgriConnect?</h2>
+    <p>Start the demo journey as a farmer, explore price recommendations, and match with buyers.</p>
+    <a href="#farmer" class="btn btn--primary btn--lg">→ Enter Farmer Dashboard</a>
   </div>
 </section>
 

@@ -517,6 +517,107 @@ function initCountUp() {
   });
 }
 
+// ============================================================
+// 10. CINEMATIC SCROLL INTRO (parallax hero, scroll-driven)
+// ============================================================
+function initCinema() {
+  const section = document.getElementById("cinema");
+  if (!section) return;
+  const root = document.documentElement;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v));
+  const smoothstep = (e0, e1, v) => {
+    const x = clamp((v - e0) / (e1 - e0));
+    return x * x * (3 - 2 * x);
+  };
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const segmentInOut = (s, a, b, c, d) => {
+    const enter = smoothstep(a, b, s);
+    const exit = smoothstep(c, d, s);
+    return { enter, exit, active: enter * (1 - exit) };
+  };
+  const getScrollDistance = () =>
+    clamp(-section.getBoundingClientRect().top, 0, section.offsetHeight - window.innerHeight);
+
+  let targetMouseX = 0, targetMouseY = 0, mouseX = 0, mouseY = 0;
+  let targetScroll = 0, smoothScroll = 0, initialized = false, rafPending = false;
+
+  function update() {
+    rafPending = false;
+    targetScroll = getScrollDistance();
+    if (!initialized || reduceMotion.matches) {
+      smoothScroll = targetScroll;
+      initialized = true;
+    } else {
+      smoothScroll = lerp(smoothScroll, targetScroll, 0.14);
+    }
+    if (Math.abs(smoothScroll - targetScroll) < 0.08) smoothScroll = targetScroll;
+
+    mouseX = lerp(mouseX, targetMouseX, 0.12);
+    mouseY = lerp(mouseY, targetMouseY, 0.12);
+
+    const s = smoothScroll;
+    const introExit = smoothstep(0, 480, s);
+    const panel1 = segmentInOut(s, 480, 720, 980, 1220);
+    const panel2Enter = smoothstep(1220, 1520, s);
+    const progress = clamp(s / 1900);
+
+    root.style.setProperty("--cine-mx", reduceMotion.matches ? 0 : mouseX.toFixed(4));
+    root.style.setProperty("--cine-my", reduceMotion.matches ? 0 : mouseY.toFixed(4));
+
+    root.style.setProperty("--cine-title-y", `${introExit * -160 + mouseY * -10}px`);
+    root.style.setProperty("--cine-title-scale", 1 - introExit * 0.1);
+    root.style.setProperty("--cine-title-opacity", 1 - introExit);
+
+    root.style.setProperty("--cine-intro-y", `${introExit * 80}px`);
+    root.style.setProperty("--cine-intro-opacity", 1 - introExit);
+
+    root.style.setProperty("--cine-sun-y", `${progress * -60 + mouseY * -6}px`);
+    root.style.setProperty("--cine-hills-far-y", `${progress * -30 + mouseX * -8}px`);
+    root.style.setProperty("--cine-hills-mid-y", `${progress * -70 + mouseX * -14}px`);
+    root.style.setProperty("--cine-field-scale", 1 + progress * 0.4);
+    root.style.setProperty("--cine-figure-x", `${progress * 90 + mouseX * 10}px`);
+    root.style.setProperty("--cine-figure-y", `${progress * 30}px`);
+
+    root.style.setProperty("--cine-shade-alpha", Math.max(panel1.active, panel2Enter) * 0.55);
+
+    root.style.setProperty("--cine-panel1-opacity", panel1.active);
+    root.style.setProperty("--cine-panel1-y", `${(1 - panel1.enter) * 40 - panel1.exit * 40}px`);
+
+    root.style.setProperty("--cine-panel2-opacity", panel2Enter);
+    root.style.setProperty("--cine-panel2-y", `${(1 - panel2Enter) * 40}px`);
+
+    if (
+      Math.abs(smoothScroll - targetScroll) > 0.08 ||
+      Math.abs(mouseX - targetMouseX) > 0.001 ||
+      Math.abs(mouseY - targetMouseY) > 0.001
+    ) {
+      requestTick();
+    }
+  }
+
+  function requestTick() {
+    if (rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(update);
+  }
+
+  window.addEventListener("scroll", requestTick, { passive: true });
+  window.addEventListener("resize", requestTick);
+  window.addEventListener(
+    "pointermove",
+    (e) => {
+      targetMouseX = e.clientX / window.innerWidth - 0.5;
+      targetMouseY = e.clientY / window.innerHeight - 0.5;
+      requestTick();
+    },
+    { passive: true }
+  );
+
+  requestTick();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initForm();
   initSpotlight();
@@ -524,4 +625,5 @@ document.addEventListener("DOMContentLoaded", () => {
   refreshAll();
   initReveal();
   initCountUp();
+  initCinema();
 });
